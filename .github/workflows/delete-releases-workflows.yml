@@ -3,7 +3,8 @@ name: Delete 30 days overdue releases and workflows runs
 on:
   # run it manually
   workflow_dispatch:    
-
+  schedule:
+    - cron: "46 17 2 * *" 
 
 jobs:
 
