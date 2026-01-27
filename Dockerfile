@@ -15,7 +15,8 @@ RUN apk add --no-cache \
  util-linux-blkid-devel util-linux-blkid-devel-static \
  libsodium-devel libsodium-devel-static userspace-rcu-devel userspace-rcu-devel-static \
  util-linux-uuid-devel util-linux-uuid-devel-static pkgconf \
- fuse fuse-devel fuse-devel-static jq bash xz
+ fuse fuse-devel fuse-devel-static jq bash xz \
+ file rpmspec
 
 
 RUN ln -s /usr/lib/libgcc_s.so.1 /usr/lib/libgcc_s.so
