@@ -13,9 +13,9 @@ HOST_ARCH=$(uname -m)
 cd $WORKSPACE
 curl https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/snapshot/keyutils-1.6.3.tar.gz | tar x --gzip
 cd keyutils-1.6.3
-sed -i '' '/keyctl_restrict/d' ./version.lds
-sed -i '' '/keyctl_dh_compute_kdf_alloc;/d' ./version.lds
-sed -i "" -e 's@-Werror@-Wno-error@g' ./Makefile
+#sed -i '' '/keyctl_restrict/d' ./version.lds
+#sed -i '' '/keyctl_dh_compute_kdf_alloc;/d' ./version.lds
+#sed -i "" -e 's@-Werror@-Wno-error@g' ./Makefile
 make
 make LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
 
