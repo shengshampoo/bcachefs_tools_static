@@ -16,8 +16,7 @@ cd keyutils-1.6.3
 #sed -i '' '/keyctl_restrict/d' ./version.lds
 #sed -i '' '/keyctl_dh_compute_kdf_alloc;/d' ./version.lds
 sed -i "" -e 's@-Werror@-Wno-error@g' ./Makefile
-export LDFLAGS="${LDFLAGS} -Wl,--undefined-version"
-make
+LDFLAGS="${LDFLAGS} -Wl,--undefined-version" make
 make LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
 
 # bcachefs-tools
