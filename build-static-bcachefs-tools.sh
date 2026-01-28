@@ -21,7 +21,7 @@ make LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
 
 #fuse
 cd $WORKSPACE
-curl -sL https://github.com/libfuse/libfuse/releases/download/fuse-3.18.0/fuse-3.18.1.tar.gz | tar x --gzip
+curl -sL https://github.com/libfuse/libfuse/releases/download/fuse-3.18.1/fuse-3.18.1.tar.gz | tar x --gzip
 cd fuse-3.18.1
 #curl -sL https://gitlab.alpinelinux.org/alpine/aports/-/raw/master/main/fuse3/dont-mknod-dev-fuse.patch | patch -p1
 #curl -sL https://gitlab.alpinelinux.org/alpine/aports/-/raw/master/main/fuse3/mount_util.c-check-if-utab-exists-before-update.patch | patch -p1
