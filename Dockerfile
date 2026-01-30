@@ -5,7 +5,7 @@ RUN apk update
 RUN apk upgrade
 
 RUN apk add --no-cache \
- linux-headers musl-devel musl-devel-static \
+ linux-headers linux-stable-devel musl-devel musl-devel-static \
  git curl cmake gmake zlib-ng-compat-devel zlib-ng-compat-devel-static \
  openssl3-devel openssl3-devel-static clang clang-devel clang-devel-static \
  libunwind-devel libunwind-devel-static libatomic-chimera-devel libatomic-chimera-devel-static \
