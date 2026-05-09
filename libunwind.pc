@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+includedir=/usr/include/
+
+Name: libunwind
+Description: libunwind generic library
+Version: 22.1.4
+Requires: libunwind
+Libs: -L${libdir} -lunwind
+Cflags: -I${includedir}
