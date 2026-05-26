@@ -23,11 +23,10 @@ make LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
 cd $WORKSPACE
 git clone https://github.com/koverstreet/bcachefs-tools.git
 cd bcachefs-tools
-sed -i "" -e '9s@PREFIX?=/usr/local$@PREFIX?=/usr/local/bcachefsmm@' ./Makefile
-sed -i "" -e '45s@std=gnu11@std=gnu23 -Wno-incompatible-function-pointer-types@' ./Makefile
+sed -i "" -e '15s@PREFIX?=/usr/local$@PREFIX?=/usr/local/bcachefsmm@' ./Makefile
+sed -i "" -e '51s@std=gnu11@std=gnu23 -Wno-incompatible-function-pointer-types@' ./Makefile
 
 LDFLAGS="-static --static -no-pie -s" BCACHEFS_FUSE=1 make libbcachefs.a
-#cd libbcachefs
 RUSTFLAGS="-C target-feature=+crt-static -C linker=clang -C strip=symbols -C opt-level=s" cargo build --target ${HOST_ARCH}-chimera-linux-musl --release
 cd ./target/${HOST_ARCH}-chimera-linux-musl/release/
 tar vcJf ./bcachefs.tar.xz bcachefs
