@@ -20,6 +20,7 @@ LDFLAGS="${LDFLAGS} -Wl,--undefined-version" make
 make LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
 
 # bcachefs-tools
+export CFLAGS="-std=c23" CXXFLAGS="-std=c++23"
 cd $WORKSPACE
 git clone https://github.com/koverstreet/bcachefs-tools.git
 cd bcachefs-tools
