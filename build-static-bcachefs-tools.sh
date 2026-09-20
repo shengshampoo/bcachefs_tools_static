@@ -19,6 +19,8 @@ sed -i "" -e 's@-Werror@-Wno-error@g' ./Makefile
 LDFLAGS="${LDFLAGS} -Wl,--undefined-version" make
 make LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
 
+cargo install bindgen-cli
+
 # bcachefs-tools
 cd $WORKSPACE
 git clone https://github.com/koverstreet/bcachefs-tools.git
