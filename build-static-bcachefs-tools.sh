@@ -19,7 +19,7 @@ sed -i "" -e 's@-Werror@-Wno-error@g' ./Makefile
 LDFLAGS="${LDFLAGS} -Wl,--undefined-version" make
 make LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
 
-cargo install bindgen-cli
+RUSTFLAGS="-C linker=clang -C strip=symbols -C opt-level=s" cargo install bindgen-cli --target ${HOST_ARCH}-chimera-linux-musl --release
 
 # bcachefs-tools
 cd $WORKSPACE
