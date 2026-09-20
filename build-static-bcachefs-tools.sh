@@ -24,9 +24,9 @@ export CFLAGS="-std=c23" CXXFLAGS="-std=c++23"
 cd $WORKSPACE
 git clone https://github.com/koverstreet/bcachefs-tools.git
 cd bcachefs-tools
-sed -i "" 's/libc = "0.2.69"/libc = "0.2.189"/' ./Cargo.toml
 sed -i "" -e '15s@PREFIX?=/usr/local$@PREFIX?=/usr/local/bcachefsmm@' ./Makefile
 sed -i "" -e '51s@std=gnu11@std=gnu23 -Wno-incompatible-function-pointer-types@' ./Makefile
+sed -i '' '$a \\n[patch.crates-io]\nlibc = { crates-io = true, version = "0.2.189" }' ./Cargo.toml
 
 LDFLAGS="-static --static -no-pie -s" BCACHEFS_FUSE=1 make libbcachefs.a
 RUSTFLAGS="-C target-feature=+crt-static -C linker=clang -C strip=symbols -C opt-level=s" cargo build --target ${HOST_ARCH}-chimera-linux-musl --release
