@@ -23,6 +23,7 @@ make LIBDIR=/usr/lib BINDIR=/usr/bin SBINDIR=/usr/sbin install
 cd $WORKSPACE
 git clone https://github.com/koverstreet/bcachefs-tools.git
 cd bcachefs-tools
+sed -i "" 's/libc = "0.2.69"/libc = "0.2.189"/' ./Cargo.toml
 sed -i "" -e '15s@PREFIX?=/usr/local$@PREFIX?=/usr/local/bcachefsmm@' ./Makefile
 sed -i "" -e '51s@std=gnu11@std=gnu23 -Wno-incompatible-function-pointer-types@' ./Makefile
 
