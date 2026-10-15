@@ -1,4 +1,4 @@
-#! /bin/bash
+##! /bin/bash
 
 set -e
 
@@ -29,7 +29,8 @@ sed -i "" -e '51s@std=gnu11@std=gnu23 -Wno-incompatible-function-pointer-types@'
 # echo -e '\n[patch.crates-io]\nlibc = { version = "0.2.189" }' >> ./Cargo.toml
 
 LDFLAGS="-static --static -no-pie -s" BCACHEFS_FUSE=1 make libbcachefs.a
-RUSTFLAGS="-C target-feature=+crt-static -C linker=clang -C strip=symbols -C opt-level=s" cargo build --target ${HOST_ARCH}-chimera-linux-musl --release
+#RUSTFLAGS="-C target-feature=+crt-static -C linker=clang -C strip=symbols -C opt-level=s" cargo build --target ${HOST_ARCH}-chimera-linux-musl --release
+CARGO_TARGET_${HOST_ARCH}_CHIMERA_LINUX_MUSL_RUSTFLAGS="-C target-feature=+crt-static -C linker=clang -C strip=symbols -C opt-level=s" cargo build --target ${HOST_ARCH}-chimera-linux-musl --release
 cd ./target/${HOST_ARCH}-chimera-linux-musl/release/
 tar vcJf ./bcachefs.tar.xz bcachefs
 mv ./bcachefs.tar.xz /work/artifact/
