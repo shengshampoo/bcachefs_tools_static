@@ -28,6 +28,8 @@ sed -i "" -e '20s@PREFIX?=/usr/local$@PREFIX?=/usr/local/bcachefsmm@' ./Makefile
 sed -i "" -e '106s@std=gnu11@std=gnu23 -Wno-incompatible-function-pointer-types@' ./Makefile
 
 CFLAGS="$CFLAGS -include sys/types.h -include time.h -include unistd.h" LDFLAGS="$LDFLAGS -static --static -no-pie -s" BCACHEFS_FUSE=1 make libbcachefs.a
+export CFLAGS_${HOST_ARCH}_chimera_linux_musl="-include time.h -include unistd.h"
+export TARGET_CFLAGS="-include time.h -include unistd.h"
 RUSTFLAGS="-C target-feature=+crt-static -C linker=clang -C strip=symbols -C opt-level=s" cargo build --target ${HOST_ARCH}-chimera-linux-musl --release
 cd ./target/${HOST_ARCH}-chimera-linux-musl/release/
 tar vcJf ./bcachefs.tar.xz bcachefs
