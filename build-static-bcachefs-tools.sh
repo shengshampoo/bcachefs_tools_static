@@ -25,9 +25,8 @@ cd $WORKSPACE
 git clone https://github.com/koverstreet/bcachefs-tools.git
 cd bcachefs-tools
 sed -i "" -e '21s@PREFIX?=/usr/local$@PREFIX?=/usr/local/bcachefsmm@' ./Makefile
-sed -i '' $'9i\\\n#include <time.h>\n' ./os/linux_user/shim/src/wrapper.h
-sed -i '' $'9i\\\n#include <unistd.h>\n' ./os/linux_user/shim/src/wrapper.h
 sed -i '' 's/libc::tgkill(/libc::syscall(libc::SYS_tgkill, /g' ./os/linux_user/stacktrace.rs
+sed -i '' $'1i\\\n#define _GNU_SOURCE\\\n#include <unistd.h>\\\n#include <time.h>\n' ./os/linux_user/shim/src/wrapper.h
 CFLAGS="-D_GNU_SOURCE" CARGO_BUILD_TARGET=${HOST_ARCH}-chimera-linux-musl make
 RUSTFLAGS="-C target-feature=+crt-static -C linker=clang -C strip=symbols -C opt-level=s" cargo build --target ${HOST_ARCH}-chimera-linux-musl --release
 cd ./target/${HOST_ARCH}-chimera-linux-musl/release/
