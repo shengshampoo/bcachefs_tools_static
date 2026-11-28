@@ -25,11 +25,9 @@ cd $WORKSPACE
 git clone https://github.com/koverstreet/bcachefs-tools.git
 cd bcachefs-tools
 sed -i "" -e '21s@PREFIX?=/usr/local$@PREFIX?=/usr/local/bcachefsmm@' ./Makefile
-#sed -i "" -e '106s@std=gnu11@std=gnu23 -Wno-incompatible-function-pointer-types@' ./Makefile
-#CFLAGS="$CFLAGS -include sys/types.h" LDFLAGS="$LDFLAGS -static --static -no-pie -s" BCACHEFS_FUSE=1 make
 sed -i '' $'9i\\\n#include <time.h>\n' ./os/linux_user/shim/src/wrapper.h
 sed -i '' $'9i\\\n#include <unistd.h>\n' ./os/linux_user/shim/src/wrapper.h
-CARGO_BUILD_TARGET=${HOST_ARCH}-chimera-linux-musl make
+CFLAGS="-D_GNU_SOURCE" CARGO_BUILD_TARGET=${HOST_ARCH}-chimera-linux-musl make
 RUSTFLAGS="-C target-feature=+crt-static -C linker=clang -C strip=symbols -C opt-level=s" cargo build --target ${HOST_ARCH}-chimera-linux-musl --release
 cd ./target/${HOST_ARCH}-chimera-linux-musl/release/
 tar vcJf ./bcachefs.tar.xz bcachefs
