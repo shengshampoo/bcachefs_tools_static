@@ -27,7 +27,7 @@ cd bcachefs-tools
 sed -i "" -e '20s@PREFIX?=/usr/local$@PREFIX?=/usr/local/bcachefsmm@' ./Makefile
 sed -i "" -e '106s@std=gnu11@std=gnu23 -Wno-incompatible-function-pointer-types@' ./Makefile
 
-CFLAGS="$CFLAGS -include sys/types.h" LDFLAGS="$LDFLAGS -static --static -no-pie -s" BCACHEFS_FUSE=1 make libbcachefs.a
+CFLAGS="$CFLAGS -include sys/types.h" LDFLAGS="$LDFLAGS -static --static -no-pie -s" BCACHEFS_FUSE=1 make
 
 sed -i '' '9i #include <time.h>' ./os/linux_user/shim/src/wrapper.h
 sed -i '' '9i #include <unistd.h>' ./os/linux_user/shim/src/wrapper.h
